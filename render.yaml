@@ -1,0 +1,15 @@
+# Render のブループリント（この1ファイルで設定が決まります）
+# ダッシュボードで New + → Blueprint を選び、このリポジトリを指定してください。
+services:
+  - type: web
+    name: catan-online
+    runtime: node
+    plan: free          # 常時起動させたい場合は starter に変更（有料）
+    region: singapore   # 日本からいちばん近いリージョン
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: "22"

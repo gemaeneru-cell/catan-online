@@ -1,0 +1,17 @@
+{
+  "name": "island-settlers",
+  "version": "1.0.0",
+  "description": "ブラウザで遊べるカタン風の対戦ゲーム（ルーム制・Discord通話向け）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}
