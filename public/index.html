@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>島の開拓者たち — オンライン対戦</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ ホーム ============ -->
+<section id="screen-home" class="screen active">
+  <div class="chart-frame">
+    <header class="brand">
+      <div class="compass" aria-hidden="true">
+        <svg viewBox="-50 -50 100 100"><g class="rose">
+          <circle r="46" class="ring"/><circle r="34" class="ring"/>
+          <path d="M0,-44 L8,0 L0,44 L-8,0 Z"/><path d="M-44,0 L0,-8 L44,0 L0,8 Z" class="dim"/>
+        </g></svg>
+      </div>
+      <h1>島の開拓者たち</h1>
+      <p class="tagline">通話しながら遊ぶ、ブラウザ版の開拓ボードゲーム</p>
+    </header>
+
+    <div class="home-cols">
+      <div class="card">
+        <h2>部屋を立てる</h2>
+        <label>あなたの名前
+          <input id="home-name-a" maxlength="14" placeholder="なまえ" autocomplete="nickname">
+        </label>
+        <button id="btn-create" class="primary">部屋を立てる</button>
+        <p class="hint">合言葉が発行されます。Discordに貼って全員に入ってもらってください。</p>
+      </div>
+
+      <div class="card">
+        <h2>部屋に入る</h2>
+        <label>あなたの名前
+          <input id="home-name-b" maxlength="14" placeholder="なまえ" autocomplete="nickname">
+        </label>
+        <label>合言葉
+          <input id="home-code" maxlength="4" placeholder="ABCD" class="code-input" autocapitalize="characters">
+        </label>
+        <button id="btn-join" class="primary">部屋に入る</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ロビー ============ -->
+<section id="screen-lobby" class="screen">
+  <div class="chart-frame lobby">
+    <div class="code-banner">
+      <span class="code-label">合言葉</span>
+      <strong id="lobby-code">----</strong>
+      <button id="btn-copy" class="ghost">コピー</button>
+    </div>
+
+    <div class="lobby-cols">
+      <div class="card">
+        <h2>参加者 <span id="lobby-count" class="muted"></span></h2>
+        <ul id="lobby-players" class="player-list"></ul>
+        <p id="lobby-wait" class="hint"></p>
+      </div>
+
+      <div class="card">
+        <h2>この部屋の設定</h2>
+        <div id="lobby-options" class="options"></div>
+        <button id="btn-start" class="primary">ゲームを始める</button>
+        <button id="btn-leave" class="ghost">部屋を出る</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ゲーム ============ -->
+<section id="screen-game" class="screen">
+  <div class="game-grid">
+    <aside class="panel players-panel">
+      <div class="panel-head"><span id="game-code" class="muted"></span></div>
+      <ul id="game-players" class="player-list game"></ul>
+      <div class="panel-head log-head">記録</div>
+      <div id="log" class="log"></div>
+    </aside>
+
+    <main class="board-wrap">
+      <div id="board-host" class="board-host"></div>
+      <div id="banner" class="banner"></div>
+    </main>
+
+    <footer class="panel hand-panel">
+      <div id="hand" class="hand"></div>
+      <div id="devhand" class="devhand"></div>
+      <div id="actions" class="actions"></div>
+    </footer>
+  </div>
+</section>
+
+<div id="modal-root" class="modal-root hidden"></div>
+<div id="toast" class="toast"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
+</body>
+</html>
